@@ -1,0 +1,41 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Implementation Rules
+
+- Before you start coding, please give me all the plans you want to implement, to do list of tasks and subtasks you need to do, and always refer to the todo list when working. After a todo task is done, revisit again the todos and check the one that are finished. Then, go to the next item.
+- Always come back to the todo list you have created. Check DONE item when its done, then move on with next item on the todo. 
+- After finish implementation, Check for all errors and possible security issue, Fix all errors (eslint, codes, etc) that you caught, Explain to me detailed summary of all the things you've implemented. 
+
+Here is an example ToDo list
+
+Todo List:
+1. Project Setup & Structure
+[ ] Create necessary directories
+[ ] Set up TypeScript configuration
+[ ] Install required dependencies (Lucide React, etc.)
+
+2. Reusable Components
+[ ] Create Button component
+[ ] Create Input component
+[ ] Create Textarea component
+[ ] Create Card component
+[ ] Create Modal component
+[ ] Create Loading component
+
+And here's the example when Todo list are checked
+
+1. Project Setup & Structure
+[x] Create necessary directories
+[x] Set up TypeScript configuration
+[x] Install required dependencies (Lucide React, etc.)
+
+2. Reusable Components
+[x] Create Button component
+[ ] Create Input component
+[ ] Create Textarea component
+[ ] Create Card component
+[ ] Create Modal component
+[ ] Create Loading component
