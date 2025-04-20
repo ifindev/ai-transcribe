@@ -9,8 +9,11 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "@ffmpeg/ffmpeg": "^0.12.15",
+        "@ffmpeg/util": "^0.12.2",
         "lucide-react": "^0.501.0",
         "next": "15.3.0",
+        "openai": "^4.95.1",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "wavesurfer.js": "^7.9.4"

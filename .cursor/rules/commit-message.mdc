@@ -1,0 +1,37 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Commit Message Rule
+
+When creating commit message, follow Conventional Commits for consistent, clear commit messages.
+Structure
+<type>(<scope>): <short heading>
+
+- <Change description>
+- <Change description>
+
+## Rules
+
+- Type: Use feat, fix, chore, docs, style, refactor, test, perf, ci, build, or revert.
+- Scope (optional): Module/area affected (e.g., auth, ui).
+- Short Heading: Max 50 chars, capitalized, present tense, no period.
+- Blank Line: Separate heading from description.
+- Description: Bulleted list (-), capitalized, present tense, detailed, specific.
+
+## Example
+```bash
+feat(auth): add user login
+
+- Add login endpoint to handle user authentication requests
+- Implement JWT token generation for secure session management
+- Update authentication documentation with new endpoint details
+```
+
+## Guidelines
+
+- Keep heading concise, description detailed but clear.
+- Use scope for specific changes, omit for broad ones.
+- Ensure clarity without needing code context.
+
