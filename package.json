@@ -1,5 +1,5 @@
 {
-    "name": "enchanta-pic",
+    "name": "ai-transcribe",
     "version": "0.1.0",
     "private": true,
     "scripts": {
@@ -9,9 +9,11 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "lucide-react": "^0.501.0",
         "next": "15.3.0",
         "react": "^19.0.0",
-        "react-dom": "^19.0.0"
+        "react-dom": "^19.0.0",
+        "wavesurfer.js": "^7.9.4"
     },
     "devDependencies": {
         "@eslint/eslintrc": "^3",

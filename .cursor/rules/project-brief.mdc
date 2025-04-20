@@ -1,0 +1,36 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Proof of concept (POC) focused on **real-time meeting transcription**, here are the essential components I need to handle. No database, no advanced features, just the core system that proves transcription works live.
+
+1. **Audio Capture in Real Time**  
+   You need a way to capture live audio. Depending on your setup:
+   - For virtual meetings: Capture system audio via a browser extension, desktop app, or routing audio to a virtual microphone.
+   - For in-person meetings: Use the device’s microphone (e.g., via a browser using the Web Audio API or a mobile app using native APIs).
+
+2. **Audio Chunking and Streaming**  
+   The captured audio must be broken into small chunks (typically 1–5 seconds) and streamed in real time to a speech-to-text service. This is necessary to get low-latency transcription.
+
+3. **Connect to a Real-Time Transcription API**  
+   Use a service that supports streaming transcription (not just file upload). Some good options:
+   - OpenAI Whisper (via a wrapper or self-hosted real-time pipeline)
+   - Deepgram
+   - AssemblyAI
+   - Google Cloud Speech-to-Text
+   - Microsoft Azure Speech  
+   This component sends the audio chunks and receives the corresponding text.
+
+4. **Display Live Transcript**  
+   As transcriptions come in from the API, update the frontend UI in real time. This can be a simple interface that shows each new line or chunk of text as it's received.
+
+5. **Handle Session State In-Memory**  
+   Keep all session data in memory. No need for a database—just store the current transcript as a variable or temporary data structure during the session. This will allow you to simulate an ongoing meeting transcript without saving it permanently.
+
+6. **Basic Error Handling and Flow Control**  
+   Even for a POC, you’ll want to manage:
+   - Microphone permission issues
+   - API connection errors
+   - Handling when no one is speaking (silence detection optional)
+   - Cleanly starting and stopping the session
