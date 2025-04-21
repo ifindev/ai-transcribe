@@ -1,10 +1,10 @@
 import { Loader2 } from 'lucide-react';
 
-interface TranscriptionDisplayProps {
+type TranscriptionDisplayProps = {
     text: string;
     isLoading: boolean;
     error?: string;
-}
+};
 
 export function TranscriptionDisplay({ text, isLoading, error }: TranscriptionDisplayProps) {
     if (isLoading) {

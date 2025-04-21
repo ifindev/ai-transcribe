@@ -1,57 +1,20 @@
 import { Mic, StopCircle, RotateCcw } from 'lucide-react';
-import { useState, useRef } from 'react';
 
 interface AudioRecorderProps {
-    onRecordingComplete: (audioBlob: Blob) => void;
-    onRetryRecording: () => void;
+    isRecording: boolean;
+    recordedAudioUrl: string | null;
+    handleStartRecording: () => void;
+    handleStopRecording: () => void;
+    handleRestartRecording: () => void;
 }
 
-export function AudioRecorder({ onRecordingComplete, onRetryRecording }: AudioRecorderProps) {
-    const [isRecording, setIsRecording] = useState(false);
-    const [recordedAudioUrl, setRecordedAudioUrl] = useState<string | null>(null);
-    const audioChunksRef = useRef<Blob[]>([]);
-    const mediaRecorderRef = useRef<MediaRecorder | null>(null);
-
-    const handleStartRecording = async () => {
-        setRecordedAudioUrl(null);
-        audioChunksRef.current = [];
-
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        const mediaRecorder = new MediaRecorder(stream);
-        mediaRecorderRef.current = mediaRecorder;
-
-        mediaRecorder.addEventListener('dataavailable', (event) => {
-            if (event.data.size > 0) {
-                audioChunksRef.current.push(event.data);
-            }
-        });
-
-        mediaRecorder.addEventListener('stop', () => {
-            const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
-            const audioUrl = URL.createObjectURL(audioBlob);
-            setRecordedAudioUrl(audioUrl);
-            onRecordingComplete(audioBlob);
-        });
-
-        mediaRecorder.start(500);
-        setIsRecording(true);
-    };
-
-    const handleStopRecording = () => {
-        if (mediaRecorderRef.current) {
-            mediaRecorderRef.current.stop();
-            mediaRecorderRef.current.stream.getTracks().forEach((track) => track.stop());
-            setIsRecording(false);
-        }
-    };
-
-    const handleRecordAgain = () => {
-        setRecordedAudioUrl(null);
-        audioChunksRef.current = [];
-        setIsRecording(false);
-        onRetryRecording();
-    };
-
+export function AudioRecorder({
+    isRecording,
+    recordedAudioUrl,
+    handleStartRecording,
+    handleStopRecording,
+    handleRestartRecording,
+}: AudioRecorderProps) {
     return (
         <div className="flex flex-col items-center gap-4">
             {isRecording && (
@@ -91,7 +54,7 @@ export function AudioRecorder({ onRecordingComplete, onRetryRecording }: AudioRe
 
                         <button
                             className="bg-blue-500 text-white font-semibold p-2 rounded-md flex items-center gap-2"
-                            onClick={handleRecordAgain}
+                            onClick={handleRestartRecording}
                         >
                             <RotateCcw className="w-4 h-4" />
                             Record Again
