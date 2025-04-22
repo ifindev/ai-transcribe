@@ -14,6 +14,7 @@ export default function useRecording({
     onRecordingError,
 }: UseRecordingProps) {
     const [isRecording, setIsRecording] = useState(false);
+    const [isPaused, setIsPaused] = useState(false);
     const [recordedAudioUrl, setRecordedAudioUrl] = useState<string | null>(null);
 
     const audioChunksRef = useRef<Blob[]>([]);
@@ -21,6 +22,7 @@ export default function useRecording({
 
     const handleStartRecording = useCallback(async () => {
         setRecordedAudioUrl(null);
+        setIsPaused(false);
         audioChunksRef.current = [];
 
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -46,28 +48,47 @@ export default function useRecording({
 
         mediaRecorder.start(chunkDurationMs);
         setIsRecording(true);
-    }, [chunkDurationMs]);
+    }, [chunkDurationMs, onRecordingComplete, onRecordingError]);
 
     const handleStopRecording = useCallback(() => {
         if (mediaRecorderRef.current) {
             mediaRecorderRef.current.stop();
             mediaRecorderRef.current.stream.getTracks().forEach((track) => track.stop());
             setIsRecording(false);
+            setIsPaused(false);
         }
     }, []);
+
+    const handlePauseRecording = useCallback(() => {
+        if (mediaRecorderRef.current && isRecording && !isPaused) {
+            mediaRecorderRef.current.pause();
+            setIsPaused(true);
+        }
+    }, [isRecording, isPaused]);
+
+    const handleResumeRecording = useCallback(() => {
+        if (mediaRecorderRef.current && isRecording && isPaused) {
+            mediaRecorderRef.current.resume();
+            setIsPaused(false);
+        }
+    }, [isRecording, isPaused]);
 
     const handleRestartRecording = useCallback(() => {
         setRecordedAudioUrl(null);
         audioChunksRef.current = [];
         setIsRecording(false);
+        setIsPaused(false);
         onRecordingRestart();
     }, [onRecordingRestart]);
 
     return {
         isRecording,
+        isPaused,
         recordedAudioUrl,
         handleStartRecording,
         handleStopRecording,
+        handlePauseRecording,
+        handleResumeRecording,
         handleRestartRecording,
     };
 }
