@@ -21,27 +21,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
-const data = {
-    navMain: [
-        {
-            title: 'Recording Workspace',
-            icon: <AudioLines className="size-4" />,
-            url: '/workspace',
-            items: [
-                {
-                    title: 'Folder 1',
-                    url: '#',
-                },
-                {
-                    title: 'Folder 2',
-                    url: '#',
-                },
-            ],
-            isActive: true,
-        },
-    ],
-};
-
 const folders = [
     {
         title: 'Folder 1',
@@ -91,7 +70,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                                     href="/workspace"
                                     className={cn(
                                         'font-medium',
-                                        pathname === '/workspace' && 'bg-gray-800 text-white',
+                                        pathname.includes('workspace') && 'bg-gray-800 text-white',
                                     )}
                                 >
                                     <AudioLines className="size-4" />
