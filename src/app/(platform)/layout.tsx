@@ -11,7 +11,7 @@ export default function PlatformLayout({ children }: { children: React.ReactNode
             <SidebarInset>
                 <header className="px-4 flex md:hidden h-16 shrink-0 items-center justify-between gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
                     <Link href="#" className="flex items-center gap-2">
-                        <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                        <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-black text-sidebar-primary-foreground">
                             <Mic className="size-4" />
                         </div>
                         <div className="grid flex-1 text-left text-sm leading-tight">
