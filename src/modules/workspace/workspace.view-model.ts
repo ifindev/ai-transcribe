@@ -1,6 +1,6 @@
 import transcribeAction from '@/actions/transcribe.action';
 import useTranscription from './hooks/use-transcription.hook';
-import useRecording from './hooks/use-recording.hook';
+import useRecording from '@/hooks/use-recording.hook';
 
 export default function useWorkspaceViewModel() {
     const transcription = useTranscription({
