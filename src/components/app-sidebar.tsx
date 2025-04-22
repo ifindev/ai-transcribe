@@ -85,13 +85,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                         <SidebarMenuItem>
                             <SidebarMenuButton
                                 asChild
-                                className="hover:bg-blue-600/90 hover:text-white"
+                                className="hover:bg-gray-800/90 hover:text-white"
                             >
                                 <Link
                                     href="/workspace"
                                     className={cn(
                                         'font-medium',
-                                        pathname === '/workspace' && 'bg-blue-600 text-white',
+                                        pathname === '/workspace' && 'bg-gray-800 text-white',
                                     )}
                                 >
                                     <AudioLines className="size-4" />
@@ -125,13 +125,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     <SidebarMenuItem>
                         <SidebarMenuButton
                             asChild
-                            className="hover:bg-blue-600/90 hover:text-white"
+                            className="hover:bg-gray-800/90 hover:text-white"
                         >
                             <Link
                                 href="/settings"
                                 className={cn(
                                     'font-medium',
-                                    pathname === '/settings' && 'bg-blue-600 text-white',
+                                    pathname === '/settings' && 'bg-gray-800 text-white',
                                 )}
                             >
                                 <Settings className="size-4" />
