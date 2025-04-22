@@ -25,7 +25,12 @@ export default function WorkspaceView() {
                     Quickly record and transcribe meetings, notes, or ideas.
                 </p>
 
-                <Dialog>
+                <Dialog
+                    onOpenChange={() => {
+                        recording.handleCancelRecording();
+                        transcription.handleResetTranscription();
+                    }}
+                >
                     <div className="flex flex-col md:flex-row w-full my-4 gap-2 md:gap-4">
                         <DialogTrigger asChild disabled={recording.isRecording}>
                             <Button variant="destructive" size="lg">
@@ -46,7 +51,7 @@ export default function WorkspaceView() {
                         <DialogHeader>
                             <DialogTitle>Record audio</DialogTitle>
                         </DialogHeader>
-                        <div className="flex flex-col gap-4 my-4">
+                        <div className="flex flex-col gap-4 my-2">
                             <AudioRecorder
                                 isRecording={recording.isRecording}
                                 isPaused={recording.isPaused}
@@ -56,6 +61,7 @@ export default function WorkspaceView() {
                                 handlePauseRecording={recording.handlePauseRecording}
                                 handleResumeRecording={recording.handleResumeRecording}
                                 handleRestartRecording={recording.handleRestartRecording}
+                                duration={recording.duration}
                             />
                             <TranscriptionDisplay
                                 text={transcription.transcription}
