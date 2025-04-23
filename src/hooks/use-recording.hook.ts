@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from 'react';
 
-import { createAudioBlob } from '@/lib/media';
+import { createAudioBlob } from '@/utils/media';
 
 import useMediaRecorder from './use-media-recorder.hook';
 import useRecordingDuration from './use-recording-duration.hook';

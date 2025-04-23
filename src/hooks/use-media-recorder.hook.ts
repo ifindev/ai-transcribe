@@ -1,5 +1,5 @@
 import { useCallback, useRef } from 'react';
-import { stopMediaTracks } from '@/lib/media';
+import { stopMediaTracks } from '@/utils/media';
 
 type UseMediaRecorderProps = {
     chunkDurationMs: number;
