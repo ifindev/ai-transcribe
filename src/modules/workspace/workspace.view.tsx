@@ -2,10 +2,9 @@
 
 import { AudioRecorder } from '@/components/audio-recorder';
 import { TranscriptionDisplay } from '@/components/transcription-display';
-import { Button } from '@/components/ui/button';
-import { ChevronRight, CloudUpload, Disc, Play, Speech } from 'lucide-react';
+import { CloudUpload, Disc, Speech } from 'lucide-react';
 import useWorkspaceViewModel from './workspace.view-model';
-import Link from 'next/link';
+
 import {
     Dialog,
     DialogContent,
@@ -13,9 +12,23 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import RecordingPreview from '@/components/recording-preview';
+import StartRecordingButton from '@/components/start-recording-button';
+import RecordingList from '@/components/recording-list';
+import RecordingControls from '@/components/recording-controls';
+import AudioWaveform from '@/components/audio-waveform';
 
 export default function WorkspaceView() {
-    const { transcription, recording, recordings } = useWorkspaceViewModel();
+    const {
+        transcription,
+        recording,
+        recordings,
+        audioPlayback,
+        recordingTimer,
+        audioStream,
+        handleToggleDialog,
+    } = useWorkspaceViewModel();
 
     return (
         <div className="flex flex-col h-full w-full p-4 md:p-8 overflow-y-auto">
@@ -25,12 +38,7 @@ export default function WorkspaceView() {
                     Quickly record and transcribe meetings, notes, or ideas.
                 </p>
 
-                <Dialog
-                    onOpenChange={() => {
-                        recording.handleCancelRecording();
-                        transcription.handleResetTranscription();
-                    }}
-                >
+                <Dialog onOpenChange={handleToggleDialog}>
                     <div className="flex flex-col md:flex-row w-full my-4 gap-2 md:gap-4">
                         <DialogTrigger asChild disabled={recording.isRecording}>
                             <Button variant="destructive" size="lg">
@@ -52,17 +60,42 @@ export default function WorkspaceView() {
                             <DialogTitle>Record audio</DialogTitle>
                         </DialogHeader>
                         <div className="flex flex-col gap-4 my-2">
-                            <AudioRecorder
-                                isRecording={recording.isRecording}
-                                isPaused={recording.isPaused}
-                                recordedAudioUrl={recording.recordedAudioUrl}
-                                handleStartRecording={recording.handleStartRecording}
-                                handleStopRecording={recording.handleStopRecording}
-                                handlePauseRecording={recording.handlePauseRecording}
-                                handleResumeRecording={recording.handleResumeRecording}
-                                handleRestartRecording={recording.handleRestartRecording}
-                                duration={recording.duration}
-                            />
+                            {!recording.isRecording && !recording.recordedAudioUrl && (
+                                <StartRecordingButton
+                                    onStartRecording={recording.handleStartRecording}
+                                />
+                            )}
+
+                            {recording.isRecording && (
+                                <>
+                                    <AudioWaveform
+                                        isRecording={recording.isRecording}
+                                        isPaused={recording.isPaused}
+                                        audioStream={audioStream.stream}
+                                    />
+                                    <RecordingControls
+                                        isPaused={recording.isPaused}
+                                        handlePauseRecording={recording.handlePauseRecording}
+                                        handleResumeRecording={recording.handleResumeRecording}
+                                        handleStopRecording={recording.handleStopRecording}
+                                        recordingTime={recordingTimer.recordingTime}
+                                        isRecording={recording.isRecording}
+                                    />
+                                </>
+                            )}
+
+                            {recording.recordedAudioUrl && (
+                                <RecordingPreview
+                                    audioRef={audioPlayback.audioRef}
+                                    duration={recording.duration}
+                                    isPlaying={audioPlayback.isPlaying}
+                                    currentTime={audioPlayback.currentTime}
+                                    togglePlayPause={audioPlayback.togglePlayPause}
+                                    onSliderChange={audioPlayback.handleSliderChange}
+                                    onDeleteRecording={recording.handleCancelRecording}
+                                />
+                            )}
+
                             <TranscriptionDisplay
                                 text={transcription.transcription}
                                 isLoading={transcription.isTranscribing}
@@ -74,35 +107,7 @@ export default function WorkspaceView() {
 
                 <div className="flex flex-col w-full my-4 gap-4">
                     <h2 className="text-2xl font-bold">My recordings</h2>
-                    <div className="flex flex-col gap-4">
-                        {recordings.map((recording) => (
-                            <Link href={`/workspace/${recording.id}`} key={recording.id}>
-                                <div className="flex w-full items-center border border-gray-200 rounded-md p-4 gap-4">
-                                    <Button
-                                        variant="black"
-                                        size="icon"
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            e.stopPropagation();
-                                        }}
-                                    >
-                                        <Play className="size-4" />
-                                    </Button>
-                                    <div key={recording.id} className="flex flex-col gap-1 flex-1">
-                                        <h3 className="text-md font-medium leading-tight">
-                                            {recording.title}
-                                        </h3>
-                                        <p className="text-xs text-muted-foreground text-wrap truncate">
-                                            {recording.createdAt}
-                                        </p>
-                                    </div>
-                                    <Button variant="ghost" size="icon">
-                                        <ChevronRight className="size-4" />
-                                    </Button>
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
+                    <RecordingList recordings={recordings} />
                 </div>
             </div>
         </div>
