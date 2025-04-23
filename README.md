@@ -6,8 +6,6 @@ A real-time audio transcriber application that captures audio and transforms it 
 
 AI Transcribe is a proof-of-concept application focused on transcribing audio into text and insights. It captures audio through your device's microphone, processes it, and returns accurate transcriptions within seconds. This project demonstrates how to build a complete audio transcription system with a modern UI using Next.js.
 
-![DEMO VIDEO](./public/assets/demo-vid.mov)
-
 ### Key Features
 
 - **Real-time Audio Capture**: Records audio through your device's microphone
