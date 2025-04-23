@@ -1,7 +1,5 @@
 'use client';
 
-import { AudioRecorder } from '@/components/audio-recorder';
-import { TranscriptionDisplay } from '@/components/transcription-display';
 import { CloudUpload, Disc, Speech } from 'lucide-react';
 import useWorkspaceViewModel from './workspace.view-model';
 
@@ -12,6 +10,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog';
+import { TranscriptionDisplay } from '@/components/transcription-display';
 import { Button } from '@/components/ui/button';
 import RecordingPreview from '@/components/recording-preview';
 import StartRecordingButton from '@/components/start-recording-button';
