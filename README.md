@@ -106,4 +106,4 @@ For best results:
 
 MIT License
 
-Copyright (c) 2024 - Muhammad Arifin
+Copyright (c) 2025 - Muhammad Arifin
