@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Transcribe
+
+A real-time audio transcriber application that captures audio and transforms it into text using OpenAI's Whisper API.
+
+## Overview
+
+AI Transcribe is a proof-of-concept application focused on transcribing audio into text and insights. It captures audio through your device's microphone, processes it, and returns accurate transcriptions within seconds. This project demonstrates how to build a complete audio transcription system with a modern UI using Next.js.
+
+### Key Features
+
+- **Real-time Audio Capture**: Records audio through your device's microphone
+- **Audio Processing**: Chunks and processes audio for optimal transcription performance
+- **OpenAI Whisper Integration**: Utilizes the powerful Whisper API for accurate speech-to-text conversion
+- **Modern UI**: Built with a clean, responsive interface using Tailwind CSS and Radix UI
+
+## Tech Stack
+
+- **Frontend**: Next.js 15, React 19, Tailwind CSS
+- **UI Components**: Radix UI components
+- **API Integration**: OpenAI API, Next.js Server Action
+- **State Management**: React Hooks
+- **Styling**: Tailwind CSS with class-variance-authority
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js 18.17 or higher
+- An OpenAI API key
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+    ```bash
+    git clone https://github.com/ifindev/ai-transcribe.git
+    cd ai-transcribe
+    ```
 
-## Learn More
+2. Install dependencies:
 
-To learn more about Next.js, take a look at the following resources:
+    ```bash
+    npm install
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Create a `.env.local` file in the root directory with the following variables:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    ```
+    OPENAI_API_KEY=your-openai-api-key
+    ```
 
-## Deploy on Vercel
+4. Start the development server:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    ```bash
+    npm run dev
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to use the application.
+
+### Using the Application
+
+1. Click on the record button to start capturing audio
+2. Speak clearly into your microphone
+3. The application will process your speech and display the transcription in real-time
+4. You can pause, resume, or stop the recording at any time
+5. Review your transcription history in the recordings list
+
+## Project Structure
+
+- `src/app`: Next.js app router pages and layouts
+- `src/components`: Reusable UI components
+- `src/hooks`: Custom React hooks for audio recording and processing
+- `src/modules`: Feature-specific modules (workspace, etc.)
+- `src/services`: Service layer for external API integrations
+- `src/actions`: Server actions for API requests
+- `src/models`: TypeScript type definitions
+- `src/utils`: Utility functions
+- `src/libs`: Third party library instantioation
+
+## Future Enhancements
+
+- Support for multiple languages
+- Speaker identification
+- Searchable transcription history
+- Export options (PDF, Word, etc.)
+- Automatic summarization using AI
+
+## Troubleshooting
+
+### Microphone Access Issues
+
+Make sure to grant microphone access permission when prompted by your browser. If you accidentally denied it, you may need to reset permissions in your browser settings.
+
+### Transcription Quality Issues
+
+For best results:
+
+- Use a high-quality microphone
+- Minimize background noise
+- Speak clearly and at a moderate pace
+- Position the microphone close to the speaker
+
+## License
+
+MIT License
+
+Copyright (c) 2024 - Muhammad Arifin
