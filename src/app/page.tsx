@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { AudioRecorder } from '@/components/audio-recorder';
 import { TranscriptionDisplay } from '@/components/transcription-display';
-import { transcribeAudio } from '@/app/actions/transcribe';
+import transcribeAction from '@/actions/transcribe.action';
 
 export default function Home() {
     const [transcription, setTranscription] = useState('');
@@ -15,7 +15,7 @@ export default function Home() {
         setError(undefined);
 
         try {
-            const result = await transcribeAudio(audioBlob);
+            const result = await transcribeAction(audioBlob);
             if (result.error) {
                 setError(result.error);
             } else {
