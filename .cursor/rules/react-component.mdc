@@ -1,0 +1,72 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# React Component Guideline
+
+This rule guides how you should create React Components. If you use this rule, then say "I use React Component Guideline" rule in the beginning of your message with full capital words!
+
+## Naming pattern, function structure, and export rules
+
+- Always use kebab-case for file naming
+- Use PascalCase for component name
+- Always export default component and use normal function export not a arrow function
+
+```
+// Example correct export and function structure
+export default function TodoItem() {
+    return (
+        ....
+    )
+}
+
+// Example incorrect export not using default
+export function TodoItem() {
+
+}
+
+// Example incorrect structure using arrow function
+ const TodoItem = () => {
+    return (
+        ...
+    )
+ }
+
+ export TodoItem
+
+```
+
+- Use `type` for props and use component name for props prefix. Alway export props
+
+```
+// Example correct props name
+
+export type TodoItemProps = {
+    id: string 
+    title: string 
+    description: string
+}
+
+export default function TodoItem({ id, title, description }:TodoItemProps ) {
+    return (
+        ....
+    )
+}
+```
+
+## Component State and Data
+
+- Component must be stateless by default, unless for local state that is needed. For example, a timer component might need a time-keeping state. But should have `duration`, `onStart`, `onPause`, and `onStop` handlers pased from props. Or, an audio waveform display componen might need useEffect and useState to process graph to be shown. Then, that's okay. But for state and handlers related to business/domain logics, they should be handled by parents. 
+
+- By default, component should not become client component. Unless, there is a state need or action like button click which doesn't supported in server component. For client component, start the file with 'use client' directive. 
+
+- Props should use correct naming:
+  - use `on[Action]` or `on[Action][Object]` structure for function handlers: `onStop`, `onDeleteTodo`, `onStartRecording`, etc
+  - use `is[State]` or `has[Data]` naming for boolean props
+
+- props should be sorted by default with data first, handlers later
+
+
+
+
