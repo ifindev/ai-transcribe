@@ -46,16 +46,24 @@ export class OpenAITranscriptionService implements ITranscriptionService {
                     {
                         role: 'system',
                         content:
-                            'You are a helpful assistant that formats transcriptions into readable sections.',
+                            'You are a professional transcription formatter with expertise in creating clear, readable content from raw audio transcripts.',
                     },
                     {
                         role: 'user',
-                        content: `Please break the following transcription into sections of up to 2 sentences each. 
-                        Each section should be separated by a new line and formatted as a paragraph. 
-                        Do not add anything extra — just return the formatted transcription.
-                        
-                        Transcription:
-                        ${transcription}`,
+                        content: `# Transcription Formatting Request
+
+                                I need this raw audio transcription formatted for maximum readability and clarity.
+
+                                ## Instructions
+                                - Break the transcription into logical paragraphs of 1-2 sentences each
+                                - Preserve the original meaning and content completely
+                                - Add appropriate spacing between paragraphs
+                                - Correct any obvious grammatical issues without changing meaning
+                                - Do not add any headers, titles, or additional content
+                                - Return only the formatted transcription
+
+                                ## Raw Transcription
+                                ${transcription}`,
                     },
                 ],
             });
@@ -69,6 +77,43 @@ export class OpenAITranscriptionService implements ITranscriptionService {
             return {
                 text: '',
                 error: error instanceof Error ? error.message : 'Failed to format transcription',
+            };
+        }
+    }
+
+    async generateInsights(transcription: string): Promise<TranscriptionResult> {
+        try {
+            console.log('in progress generating insights...');
+            const insightsResponse = await openai.chat.completions.create({
+                model: 'gpt-4o-mini',
+                messages: [
+                    {
+                        role: 'system',
+                        content:
+                            'You are an expert executive assistant who specializes in analyzing audio transcripts and extracting valuable insights for busy professionals.',
+                    },
+                    {
+                        role: 'user',
+                        content: `Extract 3-5 key insights from the following transcription.
+                        Format them as a bulleted list with clear, concise points.
+                        Focus on the most important takeaways, decisions, or action items.
+                        
+                        Transcription:
+                        ${transcription}`,
+                    },
+                ],
+            });
+            console.log('finished generating insights');
+            console.log(insightsResponse.choices[0].message.content);
+
+            return {
+                text: insightsResponse.choices[0].message.content ?? '',
+            };
+        } catch (error) {
+            console.error('Insights generation error:', error);
+            return {
+                text: '',
+                error: error instanceof Error ? error.message : 'Failed to generate insights',
             };
         }
     }
