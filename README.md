@@ -6,7 +6,7 @@ An audio transcriber application that captures audio and transforms it into text
 
 ## Detailed Write up
 
-There is a two-series Medium article explaining everything in this project:
+There is a two-series Medium articles explaining everything in this project:
 
 - Part 1: [Basic requirements, flowchart diagrams, and core UI components implementation](https://medium.com/@muhammadarifineffendi/build-an-ai-speech-to-text-app-with-openai-whisper-next-js-part-1-db6546e26fb0)
 - Part 2: [Integration with OpenAI SDK with Next.js Server Action](https://medium.com/@muhammadarifineffendi/build-an-ai-speech-to-text-app-with-openai-whisper-next-js-app-router-part-2-992f49700472)
