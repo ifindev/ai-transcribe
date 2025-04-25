@@ -10,13 +10,13 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog';
-import { TranscriptionDisplay } from '@/components/transcription-display';
 import { Button } from '@/components/ui/button';
 import RecordingPreview from '@/components/recording-preview';
 import StartRecordingButton from '@/components/start-recording-button';
 import RecordingList from '@/components/recording-list';
 import RecordingControls from '@/components/recording-controls';
 import AudioWaveform from '@/components/audio-waveform';
+import TranscriptionTabs from '@/components/transcription-tabs';
 
 export default function WorkspaceView() {
     const {
@@ -95,11 +95,16 @@ export default function WorkspaceView() {
                                 />
                             )}
 
-                            <TranscriptionDisplay
-                                text={transcription.transcription}
-                                isLoading={transcription.isTranscribing}
-                                error={transcription.errorTranscribing}
-                            />
+                            {(transcription.transcription ||
+                                transcription.insights ||
+                                transcription.isTranscribing) && (
+                                <TranscriptionTabs
+                                    transcription={transcription.transcription}
+                                    insights={transcription.insights}
+                                    isLoading={transcription.isTranscribing}
+                                    error={transcription.errorTranscribing}
+                                />
+                            )}
                         </div>
                     </DialogContent>
                 </Dialog>

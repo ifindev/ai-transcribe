@@ -65,7 +65,8 @@ export default function useRecording({
         stopRecording();
         setRecordedAudioUrl(null);
         startDurationTracking(); // Reset duration
-    }, [stopRecording, startDurationTracking]);
+        onRecordingRestart();
+    }, [stopRecording, startDurationTracking, onRecordingRestart]);
 
     const handlePauseRecording = useCallback(() => {
         if (isRecording && !isPaused) {
