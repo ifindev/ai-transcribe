@@ -1,12 +1,21 @@
 # AI Transcribe
 
-An audio transcriber application that captures audio and transforms it into text using OpenAI's Whisper API.
+An audio transcriber application that captures audio and transforms it into text using OpenAI's Whisper API. See demo video below to see it in action.
+
+https://github.com/user-attachments/assets/20dd10d7-6559-403d-a64e-3f974264e2d3
+
+## Detailed Write up
+
+There is a two-series Medium article explaining everything in this project:
+
+- Part 1: [Basic requirements, flowchart diagrams, and core UI components implementation](https://medium.com/@muhammadarifineffendi/build-an-ai-speech-to-text-app-with-openai-whisper-next-js-part-1-db6546e26fb0)
+- Part 2: [Integration with OpenAI SDK with Next.js Server Action](https://medium.com/@muhammadarifineffendi/build-an-ai-speech-to-text-app-with-openai-whisper-next-js-app-router-part-2-992f49700472)
+
+Feel free to read those articles before exploring the codes to get more context about this project.
 
 ## Overview
 
-AI Transcribe is an application focused on transcribing audio into text and insights. It captures audio through your device's microphone, processes it, and returns accurate transcriptions within seconds. The project demonstrates how to build a complete audio transcription system with a modern UI using Next.js. See demo video below to see it in action.
-
-https://github.com/user-attachments/assets/20dd10d7-6559-403d-a64e-3f974264e2d3
+AI Transcribe is an application focused on transcribing audio into text and insights. It captures audio through your device's microphone, processes it, and returns accurate transcriptions within seconds. The project demonstrates how to build a complete audio transcription system with a modern UI using Next.js.
 
 ### Key Features
 
