@@ -17,7 +17,7 @@ Feel free to read those articles before exploring the codes to get more context 
 
 AI Transcribe is an application focused on transcribing audio into text and insights. It captures audio through your device's microphone, processes it, and returns accurate transcriptions within seconds. The project demonstrates how to build a complete audio transcription system with a modern UI using Next.js. See demo video below to see it in action.
 
-https://github.com/user-attachments/assets/20dd10d7-6559-403d-a64e-3f974264e2d3
+https://github.com/user-attachments/assets/61689ace-61d2-4e86-b0fc-68c5f231921d
 
 ### Key Features
 
