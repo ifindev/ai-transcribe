@@ -24,12 +24,12 @@ https://github.com/user-attachments/assets/20dd10d7-6559-403d-a64e-3f974264e2d3
 - **Real-time Audio Capture**: Records audio through your device's microphone
 - **Audio Processing**: Chunks and processes audio for optimal transcription performance
 - **OpenAI Whisper Integration**: Utilizes the powerful Whisper API for accurate speech-to-text conversion
-- **Modern UI**: Built with a clean, responsive interface using Tailwind CSS and Radix UI
+- **Modern UI**: Built with a clean, responsive interface using Tailwind CSS and Shadcn UI
 
 ## Tech Stack
 
 - **Frontend**: Next.js 15, React 19, Tailwind CSS
-- **UI Components**: Radix UI components
+- **UI Components**: Shadcn UI components
 - **API Integration**: OpenAI API, Next.js Server Action
 - **State Management**: React Hooks
 - **Styling**: Tailwind CSS with class-variance-authority
