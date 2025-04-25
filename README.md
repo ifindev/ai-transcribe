@@ -1,3 +1,6 @@
+
+![Screenshot 2025-04-25 at 10 47 21](https://github.com/user-attachments/assets/ce16edc3-4d4b-4483-9431-a81e08c1b23d)
+
 # AI Transcribe
 
 An audio transcriber application that captures audio and transforms it into text using OpenAI's Whisper API. See demo video below to see it in action.
