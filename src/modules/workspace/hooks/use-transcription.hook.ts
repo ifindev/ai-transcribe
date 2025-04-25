@@ -7,11 +7,13 @@ type UseTranscriptionProps = {
 
 export default function useTranscription({ onTranscribeAudio }: UseTranscriptionProps) {
     const [transcription, setTranscription] = useState<string>('');
+    const [insights, setInsights] = useState<string>('');
     const [isTranscribing, setIsTranscribing] = useState<boolean>(false);
     const [errorTranscribing, setErrorTranscribing] = useState<string>();
 
     const handleResetTranscription = useCallback(() => {
         setTranscription('');
+        setInsights('');
         setIsTranscribing(false);
         setErrorTranscribing(undefined);
     }, []);
@@ -29,6 +31,7 @@ export default function useTranscription({ onTranscribeAudio }: UseTranscription
             try {
                 const result = await onTranscribeAudio(audio);
                 setTranscription(result.text);
+                setInsights(result.insights || '');
             } catch (error) {
                 setErrorTranscribing(
                     error instanceof Error ? error.message : 'Failed to transcribe audio',
@@ -42,6 +45,7 @@ export default function useTranscription({ onTranscribeAudio }: UseTranscription
 
     return {
         transcription,
+        insights,
         isTranscribing,
         errorTranscribing,
         handleTranscribeAudio,
