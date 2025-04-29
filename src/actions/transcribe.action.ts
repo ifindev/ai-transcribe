@@ -13,8 +13,6 @@ export default async function transcribeAction(audio: Blob): Promise<Transcripti
             openAITranscriptionService.generateInsights(transcription),
         ]);
 
-        console.log('Insights:', insightsResult.insights); // Add debugging log
-
         return {
             text: formattingResult.text,
             insights: insightsResult.text,

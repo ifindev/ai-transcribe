@@ -19,7 +19,7 @@ export class OpenAITranscriptionService implements ITranscriptionService {
             const transcription = await this.openai.audio.transcriptions.create({
                 file,
                 model: 'whisper-1',
-                language: 'en',
+                language: 'ar',
                 response_format: 'text',
                 temperature: 0,
             });
@@ -104,7 +104,6 @@ export class OpenAITranscriptionService implements ITranscriptionService {
                 ],
             });
             console.log('finished generating insights');
-            console.log(insightsResponse.choices[0].message.content);
 
             return {
                 text: insightsResponse.choices[0].message.content ?? '',
