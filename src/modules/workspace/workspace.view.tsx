@@ -17,6 +17,8 @@ import RecordingList from '@/components/recording-list';
 import RecordingControls from '@/components/recording-controls';
 import AudioWaveform from '@/components/audio-waveform';
 import TranscriptionTabs from '@/components/transcription-tabs';
+import LanguageSection from '@/modules/workspace/components/language-section';
+import GenerateNoteButton from '@/modules/workspace/components/generate-note-button';
 
 export default function WorkspaceView() {
     const {
@@ -26,7 +28,10 @@ export default function WorkspaceView() {
         audioPlayback,
         recordingTimer,
         audioStream,
+        selectedLanguage,
         handleToggleDialog,
+        handleLanguageChange,
+        handleGenerateNote,
     } = useWorkspaceViewModel();
 
     return (
@@ -58,7 +63,7 @@ export default function WorkspaceView() {
                         <DialogHeader className="hidden">
                             <DialogTitle>Record audio</DialogTitle>
                         </DialogHeader>
-                        <div className="flex flex-col gap-4 my-2">
+                        <div className="flex flex-col gap-8 my-2">
                             <h2 className="text-2xl font-bold text-center">Record audio</h2>
                             {!recording.isRecording && !recording.recordedAudioUrl && (
                                 <StartRecordingButton
@@ -106,6 +111,21 @@ export default function WorkspaceView() {
                                     error={transcription.errorTranscribing}
                                 />
                             )}
+
+                            <hr className="w-full border-t border-gray-200" />
+
+                            <LanguageSection
+                                onChange={handleLanguageChange}
+                                defaultLanguage={selectedLanguage}
+                            />
+
+                            <GenerateNoteButton
+                                onClick={handleGenerateNote}
+                                disabled={
+                                    !recording.recordedAudioUrl || transcription.isTranscribing
+                                }
+                                isLoading={transcription.isTranscribing}
+                            />
                         </div>
                     </DialogContent>
                 </Dialog>

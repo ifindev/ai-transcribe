@@ -4,15 +4,29 @@ import useRecording from '@/modules/workspace/hooks/use-recording.hook';
 import useAudioPlayback from '@/modules/workspace/hooks/use-audio-playback.hook';
 import useRecordingTimer from '@/modules/workspace/hooks/use-recording-timer.hook';
 import useAudioStream from '@/modules/workspace/hooks/use-audio-stream.hook';
+import { useCallback, useState } from 'react';
+import { languageOptions } from '@/constants/language.constant';
 
 export default function useWorkspaceViewModel() {
+    const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
+    const [selectedLanguage, setSelectedLanguage] = useState<string>(languageOptions[0].value);
+
+    console.log(' selectedLanguage', selectedLanguage);
+
     const transcription = useTranscription({
-        onTranscribeAudio: transcribeAction,
+        onTranscribeAudio: async (audio: Blob) => {
+            return transcribeAction(
+                audio,
+                selectedLanguage === 'auto-detect' ? undefined : selectedLanguage,
+            );
+        },
     });
 
     const recording = useRecording({
         onRecordingRestart: transcription.handleResetTranscription,
-        onRecordingComplete: transcription.handleTranscribeAudio,
+        onRecordingComplete: (audioBlob: Blob) => {
+            setAudioBlob(audioBlob);
+        },
         onRecordingError: transcription.handleSetTranscriptionError,
     });
 
@@ -29,10 +43,16 @@ export default function useWorkspaceViewModel() {
         isRecording: recording.isRecording,
     });
 
-    const handleToggleDialog = () => {
+    const handleToggleDialog = useCallback(() => {
         recording.handleCancelRecording();
         transcription.handleResetTranscription();
-    };
+    }, [recording, transcription]);
+
+    const handleGenerateNote = useCallback(() => {
+        if (audioBlob) {
+            transcription.handleTranscribeAudio(audioBlob);
+        }
+    }, [audioBlob, transcription]);
 
     const recordings = [
         {
@@ -47,6 +67,10 @@ export default function useWorkspaceViewModel() {
         },
     ];
 
+    const handleLanguageChange = useCallback((language: string) => {
+        setSelectedLanguage(language);
+    }, []);
+
     return {
         transcription,
         recording,
@@ -55,5 +79,8 @@ export default function useWorkspaceViewModel() {
         recordingTimer,
         audioStream,
         handleToggleDialog,
+        selectedLanguage,
+        handleLanguageChange,
+        handleGenerateNote,
     };
 }
