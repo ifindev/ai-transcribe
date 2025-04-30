@@ -10,16 +10,17 @@ export class OpenAITranscriptionService implements ITranscriptionService {
         this.openai = openai;
     }
 
-    async transcribe(audioBlob: Blob): Promise<TranscriptionResult> {
+    async transcribe(audioBlob: Blob, lang?: string): Promise<TranscriptionResult> {
         try {
             const arrayBuffer = await audioBlob.arrayBuffer();
             const file = new File([arrayBuffer], 'audio.webm', { type: 'audio/webm' });
 
             console.log('in progress transcribing...');
+            console.log('lang', lang);
             const transcription = await this.openai.audio.transcriptions.create({
                 file,
                 model: 'whisper-1',
-                language: 'ar',
+                language: lang,
                 response_format: 'text',
                 temperature: 0,
             });

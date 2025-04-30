@@ -3,9 +3,15 @@
 import { TranscriptionResult } from '@/models/transcription.model';
 import openAITranscriptionService from '@/services/transcription/transcription.service';
 
-export default async function transcribeAction(audio: Blob): Promise<TranscriptionResult> {
+export default async function transcribeAction(
+    audio: Blob,
+    language?: string,
+): Promise<TranscriptionResult> {
     try {
-        const { text: transcription } = await openAITranscriptionService.transcribe(audio);
+        // Pass the language parameter directly to the service
+        // If it's auto-detect, we'll pass undefined to let the service auto-detect the language
+        const lang = language === 'auto-detect' ? undefined : language;
+        const { text: transcription } = await openAITranscriptionService.transcribe(audio, lang);
 
         // Run formatting and insights generation in parallel
         const [formattingResult, insightsResult] = await Promise.all([
