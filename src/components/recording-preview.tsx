@@ -24,7 +24,7 @@ export default function RecordingPreview({
     onSliderChange,
 }: Props) {
     return (
-        <div className="flex flex-col items-center w-full">
+        <div className="flex flex-col items-center w-full animate-slide-up-blur">
             <div className="text-center mb-2">
                 <h3 className="text-md font-medium text-gray-900">Recorded</h3>
                 <p className="text-sm text-gray-500">
