@@ -91,7 +91,7 @@ export default function AudioWaveform({ isRecording, isPaused, audioStream }: Pr
     }, [isRecording, isPaused, audioStream]);
 
     return (
-        <div className="w-full bg-black rounded-lg overflow-hidden">
+        <div className="w-full bg-black rounded-lg overflow-hidden animate-slide-up-blur">
             <canvas ref={waveformRef} className="h-[80px] w-full" />
         </div>
     );
