@@ -1,4 +1,4 @@
-import transcribeAction from '@/actions/transcribe.action';
+import transcribeAction from '@/modules/workspace/actions/transcribe.action';
 import useTranscription from './hooks/use-transcription.hook';
 import useRecording from '@/modules/workspace/hooks/use-recording.hook';
 import useAudioPlayback from '@/modules/workspace/hooks/use-audio-playback.hook';
