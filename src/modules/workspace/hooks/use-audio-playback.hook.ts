@@ -5,7 +5,11 @@ import { useEffect, useRef, useState } from 'react';
  * @param recordedAudioUrl URL of the recorded audio.
  * @returns Playback state and handlers.
  */
-export function useAudioPlayback({ recordedAudioUrl }: { recordedAudioUrl: string | null }) {
+export default function useAudioPlayback({
+    recordedAudioUrl,
+}: {
+    recordedAudioUrl: string | null;
+}) {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const audioRef = useRef<HTMLAudioElement | null>(null);

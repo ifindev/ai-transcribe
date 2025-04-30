@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
  * @param isRecording Whether the recording is active.
  * @returns The audio stream for visualization.
  */
-export function useAudioStream({ isRecording }: { isRecording: boolean }) {
+export default function useAudioStream({ isRecording }: { isRecording: boolean }) {
     const [audioStream, setAudioStream] = useState<MediaStream | null>(null);
 
     useEffect(() => {

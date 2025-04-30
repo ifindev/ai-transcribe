@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
  * @param isPaused Whether the recording is paused.
  * @returns The current recording time in seconds.
  */
-export function useRecordingTimer({
+export default function useRecordingTimer({
     isRecording,
     isPaused,
 }: {

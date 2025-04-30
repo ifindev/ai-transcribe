@@ -1,9 +1,9 @@
 import transcribeAction from '@/actions/transcribe.action';
 import useTranscription from './hooks/use-transcription.hook';
-import useRecording from '@/hooks/use-recording.hook';
-import { useAudioPlayback } from '@/hooks/use-audio-playback.hook';
-import { useRecordingTimer } from '@/hooks/use-recording-timer.hook';
-import { useAudioStream } from '@/hooks/use-audio-stream.hook';
+import useRecording from '@/modules/workspace/hooks/use-recording.hook';
+import useAudioPlayback from '@/modules/workspace/hooks/use-audio-playback.hook';
+import useRecordingTimer from '@/modules/workspace/hooks/use-recording-timer.hook';
+import useAudioStream from '@/modules/workspace/hooks/use-audio-stream.hook';
 
 export default function useWorkspaceViewModel() {
     const transcription = useTranscription({
