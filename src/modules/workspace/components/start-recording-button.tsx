@@ -1,5 +1,5 @@
 import { Mic } from 'lucide-react';
-import { Button } from './ui/button';
+import { Button } from '@/components/ui/button';
 
 type Props = {
     onStartRecording: () => void;
@@ -11,7 +11,7 @@ export default function StartRecordingButton({ onStartRecording }: Props) {
             <div className="flex flex-col items-center gap-2">
                 <div className="relative">
                     <Button
-                        variant="default"
+                        variant="black"
                         size="icon"
                         className="rounded-full shadow-md z-20"
                         onClick={onStartRecording}
@@ -19,10 +19,10 @@ export default function StartRecordingButton({ onStartRecording }: Props) {
                         <Mic className="size-4" />
                     </Button>
                     <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-                        <div className="animate-ping bg-primary size-6 rounded-full"></div>
+                        <div className="animate-ping bg-black size-6 rounded-full"></div>
                     </div>
                 </div>
-                <p className="text-sm text-gray-600">Press to record</p>
+                <p className="text-sm text-gray-600 animate-slide-up-blur">Press to record</p>
             </div>
         </div>
     );

@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import RecordingPreview from '@/components/recording-preview';
-import StartRecordingButton from '@/components/start-recording-button';
+import StartRecordingButton from '@/modules/workspace/components/start-recording-button';
 import RecordingList from '@/components/recording-list';
 import RecordingControls from '@/components/recording-controls';
 import AudioWaveform from '@/components/audio-waveform';
@@ -55,10 +55,11 @@ export default function WorkspaceView() {
                         </Button>
                     </div>
                     <DialogContent>
-                        <DialogHeader>
+                        <DialogHeader className="hidden">
                             <DialogTitle>Record audio</DialogTitle>
                         </DialogHeader>
                         <div className="flex flex-col gap-4 my-2">
+                            <h2 className="text-2xl font-bold text-center">Record audio</h2>
                             {!recording.isRecording && !recording.recordedAudioUrl && (
                                 <StartRecordingButton
                                     onStartRecording={recording.handleStartRecording}

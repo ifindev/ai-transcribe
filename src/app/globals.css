@@ -141,3 +141,20 @@
     bottom: 0;
     left: 0;
 }
+
+.animate-slide-up-blur {
+    animation: slideUpBlurIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes slideUpBlurIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+        filter: blur(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
