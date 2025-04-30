@@ -4,23 +4,14 @@ import PopoverSelector, { PopoverSelectorOption } from '@/components/popover-sel
 import { languageOptions } from '@/constants/language.constant';
 
 export type TranscriptionLanguageSectionProps = {
-    onChange?: (language: string) => void;
-    defaultLanguage?: string;
+    onChange: (language: string) => void;
+    language: string;
 };
 
 export default function TranscriptionLanguageSection({
     onChange,
-    defaultLanguage = languageOptions[0].value,
+    language,
 }: TranscriptionLanguageSectionProps) {
-    const [selectedLanguage, setSelectedLanguage] = useState(defaultLanguage);
-
-    const handleLanguageChange = (language: string) => {
-        setSelectedLanguage(language);
-        if (onChange) {
-            onChange(language);
-        }
-    };
-
     return (
         <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
@@ -30,8 +21,8 @@ export default function TranscriptionLanguageSection({
 
             <PopoverSelector
                 options={languageOptions}
-                value={selectedLanguage}
-                onChange={handleLanguageChange}
+                value={language}
+                onChange={(value) => onChange(value)}
                 placeholder="Select language"
             />
 

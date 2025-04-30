@@ -116,7 +116,7 @@ export default function WorkspaceView() {
 
                             <LanguageSection
                                 onChange={handleLanguageChange}
-                                defaultLanguage={selectedLanguage}
+                                language={selectedLanguage}
                             />
 
                             <GenerateNoteButton

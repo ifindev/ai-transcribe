@@ -11,8 +11,6 @@ export default function useWorkspaceViewModel() {
     const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
     const [selectedLanguage, setSelectedLanguage] = useState<string>(languageOptions[0].value);
 
-    console.log(' selectedLanguage', selectedLanguage);
-
     const transcription = useTranscription({
         onTranscribeAudio: async (audio: Blob) => {
             return transcribeAction(
@@ -46,6 +44,7 @@ export default function useWorkspaceViewModel() {
     const handleToggleDialog = useCallback(() => {
         recording.handleCancelRecording();
         transcription.handleResetTranscription();
+        setSelectedLanguage(languageOptions[0].value);
     }, [recording, transcription]);
 
     const handleGenerateNote = useCallback(() => {
